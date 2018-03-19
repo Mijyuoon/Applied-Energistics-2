@@ -39,7 +39,6 @@ import appeng.api.storage.IStorageChannel;
 import appeng.api.storage.data.IAEStack;
 import appeng.api.storage.data.IItemList;
 import appeng.me.cache.SecurityCache;
-import appeng.util.ItemSorters;
 
 
 public class NetworkInventoryHandler<T extends IAEStack<T>> implements IMEInventoryHandler<T>
@@ -47,7 +46,7 @@ public class NetworkInventoryHandler<T extends IAEStack<T>> implements IMEInvent
 
 	private static final ThreadLocal<LinkedList> DEPTH_MOD = new ThreadLocal<>();
 	private static final ThreadLocal<LinkedList> DEPTH_SIM = new ThreadLocal<>();
-	private static final Comparator<Integer> PRIORITY_SORTER = ( o1, o2 ) -> ItemSorters.compareInt( o2, o1 );
+	private static final Comparator<Integer> PRIORITY_SORTER = ( o1, o2 ) -> Integer.compare( o2, o1 );
 
 	private static int currentPass = 0;
 	private final IStorageChannel<T> myChannel;
