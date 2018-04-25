@@ -232,7 +232,12 @@ class ItemEncodedPatternBakedModel implements IBakedModel
 					IBakedModel realModel = Minecraft.getMinecraft().getRenderItem().getItemModelMesher().getItemModel( output );
 					// Give the item model a chance to handle the overrides as well
 					realModel = realModel.getOverrides().handleItemState( realModel, output, world, entity );
-					return new ShiftHoldingModelWrapper( realModel );
+
+					// Make sure the item does not use TESR as such items have blank models
+					if( !realModel.isBuiltInRenderer() )
+					{
+						return new ShiftHoldingModelWrapper(realModel);
+					}
 				}
 			}
 
